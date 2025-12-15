@@ -1,0 +1,55 @@
+name: Add Missing Frontmatter
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'posts/*.md'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  add-frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check and add missing frontmatter
+        id: frontmatter
+        run: |
+          node scripts/add-frontmatter.js
+          if [ -n "$(git status --porcelain posts/)" ]; then
+            echo "changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.frontmatter.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'chore: Add missing frontmatter to posts'
+          title: 'chore: Add missing frontmatter to posts'
+          body: |
+            This PR automatically adds missing frontmatter (title, date, description) to blog posts.
+
+            - `title`: Generated from filename if missing
+            - `date`: Set to today's date if missing
+            - `description`: Set to empty string if missing
+
+            Please review and merge if the changes look correct.
+          branch: auto/add-frontmatter
+          delete-branch: true

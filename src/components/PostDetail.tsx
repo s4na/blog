@@ -13,7 +13,7 @@ function PostDetail({ title, date, content }: PostDetailProps) {
     <article>
       <Link to="/" className="back-link">&larr; Back to posts</Link>
       <h1>{title}</h1>
-      <p className="post-date">{date}</p>
+      {date && <p className="post-date">{date}</p>}
       <div className="post-content">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {content}

@@ -23,8 +23,8 @@ function PostList({ posts }: PostListProps) {
           <h2 className="post-title">
             <Link to={`/posts/${post.slug}`}>{post.title}</Link>
           </h2>
-          <p className="post-date">{post.date}</p>
-          <p className="post-description">{post.description}</p>
+          {post.date && <p className="post-date">{post.date}</p>}
+          {post.description && <p className="post-description">{post.description}</p>}
         </li>
       ))}
     </ul>
