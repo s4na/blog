@@ -24,7 +24,13 @@ function Home() {
         })
       }
 
-      loadedPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      // Sort by date (newest first), posts without date go to the end
+      loadedPosts.sort((a, b) => {
+        if (!a.date && !b.date) return 0
+        if (!a.date) return 1
+        if (!b.date) return -1
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      })
       setPosts(loadedPosts)
       setLoading(false)
     }
