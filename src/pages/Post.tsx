@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import matter from 'gray-matter'
 import PostDetail from '../components/PostDetail'
 
+const postFiles = import.meta.glob('/posts/*.md', { query: '?raw', import: 'default' })
+
 function Post() {
   const { slug } = useParams<{ slug: string }>()
   const [post, setPost] = useState<{ title: string; date: string; content: string } | null>(null)
@@ -11,23 +13,23 @@ function Post() {
 
   useEffect(() => {
     async function loadPost() {
-      try {
-        const response = await fetch(`${import.meta.env.BASE_URL}posts/${slug}.md`)
-        if (!response.ok) {
-          throw new Error('Post not found')
-        }
-        const text = await response.text()
-        const { data, content } = matter(text)
-        setPost({
-          title: data.title || slug || '',
-          date: data.date || '',
-          content,
-        })
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred')
-      } finally {
+      const path = `/posts/${slug}.md`
+      const loader = postFiles[path]
+
+      if (!loader) {
+        setError('Post not found')
         setLoading(false)
+        return
       }
+
+      const content = await loader() as string
+      const { data, content: body } = matter(content)
+      setPost({
+        title: data.title || slug || '',
+        date: data.date || '',
+        content: body,
+      })
+      setLoading(false)
     }
 
     if (slug) {

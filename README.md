@@ -17,9 +17,11 @@ npm run build
 
 ## 記事の追加方法
 
-1. `posts/` ディレクトリに Markdown ファイルを作成します
-2. ファイルの先頭に YAML フロントマターを追加します
-3. `posts/index.json` にファイル名を追加します
+`posts/` ディレクトリに Markdown ファイルを追加するだけで、自動的に記事として認識されます。
+
+1. `posts/` ディレクトリに `.md` ファイルを作成
+2. ファイルの先頭に YAML フロントマターを追加
+3. 完了！（ビルド時に自動検出されます）
 
 ### 記事フォーマット
 
@@ -38,14 +40,6 @@ description: "記事の説明"
 - コードブロック
 - 引用
 - など
-```
-
-### index.json の更新
-
-新しい記事を追加したら、`posts/index.json` にファイル名を追加してください：
-
-```json
-["hello-world.md", "new-post.md"]
 ```
 
 ## GitHub Pages の設定
