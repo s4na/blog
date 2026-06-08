@@ -41,7 +41,7 @@ const posts = await Promise.all(
   }),
 );
 
-posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+posts.sort((a, b) => new Date(b.data.date ?? 0) - new Date(a.data.date ?? 0));
 
 for (const { slug, data, bodyHtml, hasMermaid } of posts) {
   await writeFile(
@@ -73,8 +73,9 @@ function articlePage(
 ) {
   const dateStr = formatDate(date);
   const mermaidScript = hasMermaid
-    ? `\n    <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    ? `
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.esm.min.mjs";
       mermaid.initialize({ startOnLoad: true });
     </script>`
     : "";

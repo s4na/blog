@@ -29,7 +29,7 @@ for (const file of files) {
     errors.push(`${file}: "title" は空でない文字列が必須`);
   }
 
-  if (!data.date) {
+  if (data.date == null) {
     errors.push(`${file}: "date" は必須`);
   } else if (
     !(data.date instanceof Date) &&

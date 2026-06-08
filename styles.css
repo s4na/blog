@@ -157,7 +157,6 @@ p {
 .article section,
 .article h2,
 .article p,
-.article ul,
 .article ol,
 .article pre {
   max-inline-size: var(--measure);
@@ -183,8 +182,8 @@ pre.mermaid {
   background: transparent;
   color: inherit;
   padding: 0;
+  /* Mermaid ダイアグラムは本文 measure (--measure) に縛らず全幅で表示する */
   max-inline-size: 100%;
-  overflow-x: auto;
 }
 
 code {
