@@ -1,5 +1,7 @@
 import { access, readFile } from "node:fs/promises";
 
+// 注意: 記事スラグはハードコードされている。新しい記事を追加した場合は
+// requiredFiles と下の content checks も合わせて更新すること。
 const requiredFiles = [
   "_site/index.html",
   "_site/styles.css",
