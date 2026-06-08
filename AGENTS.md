@@ -16,4 +16,4 @@
 
 - Use Mermaid notation for workflow diagrams and flowcharts in blog posts.
 - Wrap diagrams in a fenced code block with the `mermaid` language tag.
-- The build system renders Mermaid diagrams client-side via Mermaid.js (loaded from CDN only on pages that contain a diagram).
+- Do not add a Mermaid.js `<script>` tag manually; the build system injects one from the CDN automatically for pages that contain a diagram.
