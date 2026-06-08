@@ -5,6 +5,17 @@ import { marked } from "marked";
 
 const root = join(import.meta.dirname, "..");
 
+marked.use({
+  renderer: {
+    code({ text, lang }) {
+      if (lang === "mermaid") {
+        return `<pre class="mermaid">${esc(text)}\n</pre>\n`;
+      }
+      return false;
+    },
+  },
+});
+
 await rm(join(root, "_site"), { force: true, recursive: true });
 await mkdir(join(root, "_site/posts"), { recursive: true });
 
@@ -25,16 +36,17 @@ const posts = await Promise.all(
     // 信頼済みコンテンツであることが前提。外部コントリビュータに .md を開放する
     // 場合はサニタイザーの追加を検討すること。
     const bodyHtml = await marked(content);
-    return { slug, data, bodyHtml };
+    const hasMermaid = bodyHtml.includes('class="mermaid"');
+    return { slug, data, bodyHtml, hasMermaid };
   }),
 );
 
 posts.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 
-for (const { slug, data, bodyHtml } of posts) {
+for (const { slug, data, bodyHtml, hasMermaid } of posts) {
   await writeFile(
     join(root, "_site/posts", `${slug}.html`),
-    articlePage(data, bodyHtml),
+    articlePage(data, bodyHtml, hasMermaid),
     "utf8",
   );
 }
@@ -57,8 +69,15 @@ function formatDate(date) {
 function articlePage(
   { title, date, description = "", eyebrow = "", lead = "" },
   bodyHtml,
+  hasMermaid = false,
 ) {
   const dateStr = formatDate(date);
+  const mermaidScript = hasMermaid
+    ? `\n    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true });
+    </script>`
+    : "";
   return `<!doctype html>
 <html lang="ja">
   <head>
@@ -66,7 +85,7 @@ function articlePage(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${esc(title)}</title>
     <meta name="description" content="${esc(description)}" />
-    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="../styles.css" />${mermaidScript}
   </head>
   <body>
     <header class="site-header">

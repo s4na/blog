@@ -11,3 +11,9 @@
 - Write public-facing blog content in Japanese unless the user asks for another language.
 - Keep examples reproducible without requiring private configuration.
 - Prefer concrete workflow descriptions over claims about private projects or private repositories.
+
+## Diagrams
+
+- Use Mermaid notation for workflow diagrams and flowcharts in blog posts.
+- Wrap diagrams in a fenced code block with the `mermaid` language tag.
+- The build system renders Mermaid diagrams client-side via Mermaid.js (loaded from CDN only on pages that contain a diagram).

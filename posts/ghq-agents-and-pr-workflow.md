@@ -8,61 +8,11 @@ lead: >-
   GitHub のリポジトリURLとやってほしいことを渡すと、実装、確認、PR作成までをひとつの作業として進められることだ。
 ---
 
-<figure class="workflow-figure" aria-labelledby="workflow-title">
-  <svg
-    viewBox="0 0 960 300"
-    role="img"
-    aria-labelledby="workflow-title workflow-desc"
-  >
-    <title id="workflow-title">ghq と AGENTS.md を起点にPRまで進む流れ</title>
-    <desc id="workflow-desc">
-      repo URL、ghq、AGENTS.md、worktree、branch、test、pull request
-      が順に接続される図
-    </desc>
-    <defs>
-      <marker
-        id="arrow"
-        viewBox="0 0 10 10"
-        refX="8"
-        refY="5"
-        markerWidth="7"
-        markerHeight="7"
-        orient="auto-start-reverse"
-      >
-        <path d="M 0 0 L 10 5 L 0 10 z"></path>
-      </marker>
-    </defs>
-    <g class="flow-line">
-      <path d="M155 150 H805"></path>
-    </g>
-    <g class="flow-node" transform="translate(48 92)">
-      <rect width="150" height="116" rx="6"></rect>
-      <text x="75" y="48" text-anchor="middle">repo URL</text>
-      <text x="75" y="74" text-anchor="middle">+ 依頼</text>
-    </g>
-    <g class="flow-node" transform="translate(248 92)">
-      <rect width="150" height="116" rx="6"></rect>
-      <text x="75" y="48" text-anchor="middle">~/ghq</text>
-      <text x="75" y="74" text-anchor="middle">配置を決める</text>
-    </g>
-    <g class="flow-node" transform="translate(448 92)">
-      <rect width="150" height="116" rx="6"></rect>
-      <text x="75" y="48" text-anchor="middle">AGENTS.md</text>
-      <text x="75" y="74" text-anchor="middle">作法を読む</text>
-    </g>
-    <g class="flow-node" transform="translate(648 92)">
-      <rect width="150" height="116" rx="6"></rect>
-      <text x="75" y="42" text-anchor="middle">worktree</text>
-      <text x="75" y="68" text-anchor="middle">branch</text>
-      <text x="75" y="94" text-anchor="middle">test</text>
-    </g>
-    <g class="flow-node strong" transform="translate(810 92)">
-      <rect width="110" height="116" rx="6"></rect>
-      <text x="55" y="58" text-anchor="middle">Pull</text>
-      <text x="55" y="84" text-anchor="middle">Request</text>
-    </g>
-  </svg>
-</figure>
+```mermaid
+flowchart LR
+    A["repo URL<br/>+ 依頼"] --> B["~/ghq<br/>配置を決める"] --> C["AGENTS.md<br/>作法を読む"] --> D["worktree<br/>branch<br/>test"] --> E["Pull Request"]
+    style E fill:#f2d2c4,stroke:#1e2428,stroke-width:2px
+```
 
 ## 短い依頼で済むようになった
 

@@ -167,45 +167,6 @@ p {
   margin-block-end: 24px;
 }
 
-.workflow-figure {
-  margin: 34px 0 18px;
-  padding: 0;
-  inline-size: 100%;
-  overflow-x: auto;
-}
-
-.workflow-figure svg {
-  display: block;
-  inline-size: min(100%, 960px);
-  min-inline-size: 720px;
-  block-size: auto;
-  border-block: 2px solid var(--ink);
-}
-
-.flow-line path {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 2;
-  marker-end: url("#arrow");
-}
-
-.flow-node rect {
-  fill: var(--panel);
-  stroke: var(--ink);
-  stroke-width: 2;
-}
-
-.flow-node.strong rect {
-  fill: #f2d2c4;
-}
-
-.flow-node text {
-  fill: var(--ink);
-  font-family: "Avenir Next", Avenir, "Helvetica Neue", sans-serif;
-  font-size: 19px;
-  font-weight: 700;
-}
-
 pre {
   margin-block: 22px 0;
   padding: 18px;
@@ -215,6 +176,15 @@ pre {
   color: var(--code);
   font-size: 0.92rem;
   line-height: 1.65;
+}
+
+pre.mermaid {
+  border-inline-start: none;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  max-inline-size: 100%;
+  overflow-x: auto;
 }
 
 code {
@@ -243,10 +213,5 @@ li + li {
 
   h1 {
     font-size: 2.25rem;
-  }
-
-  .workflow-figure {
-    margin-inline: -16px;
-    padding-inline: 16px;
   }
 }
