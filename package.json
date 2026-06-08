@@ -5,9 +5,10 @@
   "scripts": {
     "build": "node scripts/build-site.mjs",
     "check:site": "node scripts/check-site.mjs",
-    "lint": "pnpm run lint:format && pnpm run build && pnpm run lint:html && pnpm run check:site",
+    "lint": "pnpm run lint:format && pnpm run validate:posts && pnpm run build && pnpm run lint:html && pnpm run check:site",
     "lint:format": "prettier --check .",
-    "lint:html": "html-validate _site/index.html '_site/posts/**/*.html'"
+    "lint:html": "html-validate _site/index.html '_site/posts/**/*.html'",
+    "validate:posts": "node scripts/validate-posts.mjs"
   },
   "devDependencies": {
     "gray-matter": "4.0.3",
