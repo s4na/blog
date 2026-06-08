@@ -29,7 +29,3 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Lint
         run: pnpm run lint
-      - name: Build site
-        run: pnpm run build
-      - name: Check generated site
-        run: test -f _site/index.html && test -f _site/posts/ghq-agents-and-pr-workflow.html

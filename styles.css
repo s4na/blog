@@ -155,6 +155,10 @@ p {
 
 .article-header,
 .article section,
+.article h2,
+.article p,
+.article ul,
+.article ol,
 .article pre {
   max-inline-size: var(--measure);
 }
