@@ -1,0 +1,16 @@
+{
+  "name": "blog",
+  "private": true,
+  "packageManager": "pnpm@11.2.2",
+  "scripts": {
+    "build": "node scripts/build-site.mjs",
+    "check:site": "node scripts/check-site.mjs",
+    "lint": "pnpm run lint:format && pnpm run lint:html && pnpm run check:site",
+    "lint:format": "prettier --check .",
+    "lint:html": "html-validate index.html posts/**/*.html"
+  },
+  "devDependencies": {
+    "html-validate": "11.5.0",
+    "prettier": "3.8.3"
+  }
+}
