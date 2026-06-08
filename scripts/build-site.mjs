@@ -75,7 +75,7 @@ function articlePage(
   const mermaidScript = hasMermaid
     ? `
     <script type="module">
-      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.15.0/dist/mermaid.esm.min.mjs";
+      import mermaid from "https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.12.0/mermaid.esm.min.mjs";
       mermaid.initialize({ startOnLoad: true });
     </script>`
     : "";
