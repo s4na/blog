@@ -16,4 +16,4 @@
 
 - ブログ記事のワークフロー図やフローチャートにはマーメイド記法を使う。
 - `mermaid` 言語タグ付きのフェンスコードブロックで囲む。
-- Mermaid.js の `<script>` タグを手動で追加しないこと — 図を含むページにはビルド時にスクリプトタグが自動で注入される。Mermaid は pnpm でインストールし、`node_modules/mermaid/dist/` から `_site/vendor/` にビルド時コピーされる。
+- Mermaid.js の `<script>` タグを手動で追加しないこと — 図を含むページにはビルド時にスクリプトタグが自動で注入される。Mermaid は pnpm でインストールし、`node_modules/mermaid/dist/mermaid.esm.min.mjs` が `_site/vendor/` にビルド時コピーされる。

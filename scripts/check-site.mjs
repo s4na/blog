@@ -10,6 +10,7 @@ const requiredFiles = [
   join(root, "_site/index.html"),
   join(root, "_site/styles.css"),
   join(root, "_site/.nojekyll"),
+  join(root, "_site/vendor/mermaid.esm.min.mjs"),
   join(root, "_site/posts/ghq-agents-and-pr-workflow.html"),
 ];
 
