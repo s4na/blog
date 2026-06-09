@@ -18,10 +18,16 @@ marked.use({
 
 await rm(join(root, "_site"), { force: true, recursive: true });
 await mkdir(join(root, "_site/posts"), { recursive: true });
+await mkdir(join(root, "_site/vendor"), { recursive: true });
 
 for (const file of ["styles.css", ".nojekyll"]) {
   await cp(join(root, file), join(root, "_site", file));
 }
+
+await cp(
+  join(root, "node_modules/mermaid/dist/mermaid.esm.min.mjs"),
+  join(root, "_site/vendor/mermaid.esm.min.mjs"),
+);
 
 const postFiles = (await readdir(join(root, "posts"))).filter(
   (f) => extname(f) === ".md",
@@ -75,7 +81,7 @@ function articlePage(
   const mermaidScript = hasMermaid
     ? `
     <script type="module">
-      import mermaid from "https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.12.0/mermaid.esm.min.mjs";
+      import mermaid from "../vendor/mermaid.esm.min.mjs";
       mermaid.initialize({ startOnLoad: true });
     </script>`
     : "";
