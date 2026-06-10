@@ -109,6 +109,10 @@ function articlePage(
         ${bodyHtml}
       </article>
     </main>
+
+    <footer class="footer">
+      <p>&copy; s4na</p>
+    </footer>
   </body>
 </html>
 `;
@@ -161,6 +165,10 @@ function indexPage(posts) {
 ${cards}
       </section>
     </main>
+
+    <footer class="footer">
+      <p>&copy; s4na</p>
+    </footer>
   </body>
 </html>
 `;
