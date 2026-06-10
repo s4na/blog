@@ -50,7 +50,8 @@ a:hover {
   justify-content: space-between;
   max-inline-size: var(--max);
   margin-inline: auto;
-  padding: 24px 32px;
+  padding-block: 24px;
+  padding-inline: 32px;
   border-block-end: 1px solid var(--line);
 }
 
@@ -276,12 +277,16 @@ li + li {
   }
 
   .site-header {
-    padding: 20px 20px;
+    padding: 20px;
   }
 
   .home,
   .article-shell {
     padding-inline: 20px;
+  }
+
+  .footer {
+    padding: 20px;
   }
 
   .home {
